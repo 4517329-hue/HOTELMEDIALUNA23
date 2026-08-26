@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Reservas | Hotel Media Luna</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #f4f6f8;
+            color: #333;
+        }
+
+
+        header {
+            background: #04375c;
+            padding: 18px 0;
+            border-bottom: 3px solid #d4af37;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            text-decoration: none;
+            font-size: 29px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #f1c84b;
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        nav a:hover {
+            color: #f1c84b;
+        }
+
+    
+
+        .hero {
+            min-height: 330px;
+
+            background:
+                linear-gradient(
+                    rgba(3,55,92,.72),
+                    rgba(3,55,92,.72)
+                ),
+                url("https://i.pinimg.com/1200x/8f/4a/a3/8f4aa3c9576806b3fcb98a993d9ff76b.jpg");
+
+            background-size: cover;
+            background-position: center;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 12px;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            opacity: .9;
+        }
+
+        .gold {
+            color: #f1c84b;
+        }
+
+
+        main {
+            padding: 70px 20px;
+        }
+
+        .reservation-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .title h2 {
+            color: #04375c;
+            font-size: 34px;
+            margin-bottom: 10px;
+        }
+
+        .title p {
+            color: #777;
+        }
+
+
+        .rooms {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .room {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+
+            box-shadow:
+                0 10px 30px rgba(0,0,0,.12);
+
+            border: 2px solid transparent;
+            transition: .3s;
+        }
+
+        .room:hover {
+            transform: translateY(-6px);
+        }
+
+        .room.selected {
+            border: 2px solid #d4af37;
+
+            box-shadow:
+                0 12px 35px rgba(212,175,55,.35);
+        }
+
+        .room-image {
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .deluxe {
+            background-image:
+                url("https://images.unsplash.com/photo-1611892440504-42a792e24d32");
+        }
+
+        .suite {
+            background-image:
+                url("https://i.pinimg.com/736x/6c/24/d9/6c24d9f4ea1803a0aca5d3eb239a943b.jpg");
+        }
+
+        .premium {
+            background-image:
+                url("https://i.pinimg.com/736x/12/47/b0/1247b0e2bbb19f9de5b3b4f9595cf97a.jpg");
+        }
+
+        .room-info {
+            padding: 25px;
+        }
+
+        .room-info h3 {
+            color: #04375c;
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .room-info p {
+            color: #777;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .price {
+            color: #b18c18;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .price small {
+            color: #777;
+            font-size: 13px;
+            font-weight: normal;
+        }
+
+        .select-btn {
+            width: 100%;
+            margin-top: 18px;
+
+            padding: 13px;
+
+            border: 2px solid #04375c;
+            border-radius: 8px;
+
+            background: white;
+            color: #04375c;
+
+            font-weight: bold;
+            cursor: pointer;
+
+            transition: .3s;
+        }
+
+        .select-btn:hover,
+        .room.selected .select-btn {
+            background: #04375c;
+            color: white;
+        }
+
+
+        .booking-box {
+            background: white;
+            padding: 45px;
+            border-radius: 18px;
+
+            box-shadow:
+                0 15px 40px rgba(0,0,0,.12);
+
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .booking-box h2 {
+            color: #04375c;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: bold;
+            color: #04375c;
+            margin-bottom: 8px;
+        }
+
+        input,
+        select {
+            padding: 14px;
+
+            border: 1px solid #d5dce1;
+            border-radius: 8px;
+
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #d4af37;
+
+            box-shadow:
+                0 0 0 2px rgba(212,175,55,.15);
+        }
+
+
+        .summary {
+            margin-top: 35px;
+
+            background: #f3f7fb;
+
+            border-left: 5px solid #d4af37;
+
+            padding: 25px;
+            border-radius: 8px;
+        }
+
+        .summary h3 {
+            color: #04375c;
+            margin-bottom: 18px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+
+            padding: 10px 0;
+
+            border-bottom: 1px solid #dce4ea;
+        }
+
+        .summary-row:last-child {
+            border-bottom: none;
+        }
+
+        .total {
+            margin-top: 15px;
+
+            font-size: 25px;
+            font-weight: bold;
+
+            color: #04375c;
+        }
+
+
+        .reserve-button {
+            width: 100%;
+
+            margin-top: 30px;
+            padding: 16px;
+
+            border: none;
+            border-radius: 9px;
+
+            background: #04375c;
+            color: white;
+
+            font-size: 16px;
+            font-weight: bold;
+
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .reserve-button:hover {
+            background: #12649a;
+            transform: translateY(-2px);
+        }
+
+
+        footer {
+            background: #04375c;
+            color: white;
+
+            text-align: center;
+
+            padding: 25px;
+
+            border-top: 3px solid #d4af37;
+            margin-top: 50px;
+        }
+
+        footer span {
+            color: #f1c84b;
+        }
+
+
+
+        @media (max-width: 900px) {
+
+            .rooms {
+                grid-template-columns: 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            header .container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav {
+                gap: 12px;
+                font-size: 14px;
+            }
+
+            .hero-content h1 {
+                font-size: 35px;
+            }
+
+            .booking-box {
+                padding: 25px 20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- HEADER -->
+
+    <header>
+
+        <div class="container">
+
+            <a href="index.html" class="logo">
+                Hotel <span>Media Luna</span>
+            </a>
+
+            <nav>
+
+                <a href="index.html">
+                    Inicio
+                </a>
+
+                <a href="habitaciones.html">
+                    Habitaciones
+                </a>
+
+                <a href="reservas.html">
+                    Reservar
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <h1>
+                Reserva tu estancia
+            </h1>
+
+            <p>
+                Vive una experiencia única en
+                <span class="gold">
+                    Hotel Media Luna
+                </span>
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- RESERVA -->
+
+    <main>
+
+        <div class="reservation-container">
+
+
+            <div class="title">
+
+                <h2>
+                    Elige tu habitación
+                </h2>
+
+                <p>
+                    Selecciona la habitación que mejor se adapte
+                    a tu estancia.
+                </p>
+
+            </div>
+
+
+            <!-- HABITACIONES -->
+
+            <div class="rooms">
+
+
+                <!-- DELUXE -->
+
+                <div class="room" id="roomDeluxe">
+
+                    <div class="room-image deluxe"></div>
+
+                    <div class="room-info">
+
+                        <h3>
+                            Habitación Deluxe
+                        </h3>
+
+                        <p>
+                            Habitación elegante y confortable
+                            para disfrutar de una estancia tranquila.
+                        </p>
+
+                        <div class="price">
+                            $85
+                            <small>/ noche</small>
+                        </div>
+
+                        <button
+                            type="button"
+                            class="select-btn"
+                            onclick="seleccionarHabitacion(
+                                'Habitación Deluxe',
+                                85,
+                                'roomDeluxe'
+                            )">
+
+                            Elegir habitación
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SUITE -->
+
+                <div class="room" id="roomSuite">
+
+                    <div class="room-image suite"></div>
+
+                    <div class="room-info">
+
+                        <h3>
+                            Suite Media Luna
+                        </h3>
+
+                        <p>
+                            Amplia suite con espacios modernos
+                            y mayor comodidad.
+                        </p>
+
+                        <div class="price">
+                            $130
+                            <small>/ noche</small>
+                        </div>
+
+                        <button
+                            type="button"
+                            class="select-btn"
+                            onclick="seleccionarHabitacion(
+                                'Suite Media Luna',
+                                130,
+                                'roomSuite'
+                            )">
+
+                            Elegir habitación
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PREMIUM -->
+
+                <div class="room" id="roomPremium">
+
+                    <div class="room-image premium"></div>
+
+                    <div class="room-info">
+
+                        <h3>
+                            Suite Premium
+                        </h3>
+
+                        <p>
+                            Nuestra habitación exclusiva para
+                            una experiencia de máximo confort.
+                        </p>
+
+                        <div class="price">
+                            $180
+                            <small>/ noche</small>
+                        </div>
+
+                        <button
+                            type="button"
+                            class="select-btn"
+                            onclick="seleccionarHabitacion(
+                                'Suite Premium',
+                                180,
+                                'roomPremium'
+                            )">
+
+                            Elegir habitación
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- FORMULARIO -->
+
+            <div class="booking-box">
+
+                <h2>
+                    Datos de la reservación
+                </h2>
+
+
+                <form id="reservationForm">
+
+
+                    <div class="form-grid">
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Nombre completo
+                            </label>
+
+                            <input
+                                type="text"
+                                id="nombre"
+                                placeholder="Escribe tu nombre"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Correo electrónico
+                            </label>
+
+                            <input
+                                type="email"
+                                id="correo"
+                                placeholder="correo@ejemplo.com"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Teléfono
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="telefono"
+                                placeholder="+503 0000-0000"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Habitación seleccionada
+                            </label>
+
+                            <input
+                                type="text"
+                                id="habitacion"
+                                placeholder="Selecciona una habitación"
+                                readonly
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Fecha de entrada
+                            </label>
+
+                            <input
+                                type="date"
+                                id="entrada"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Fecha de salida
+                            </label>
+
+                            <input
+                                type="date"
+                                id="salida"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Adultos
+                            </label>
+
+                            <select id="adultos">
+
+                                <option value="1">
+                                    1 adulto
+                                </option>
+
+                                <option value="2">
+                                    2 adultos
+                                </option>
+
+                                <option value="3">
+                                    3 adultos
+                                </option>
+
+                                <option value="4">
+                                    4 adultos
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Niños
+                            </label>
+
+                            <select id="ninos">
+
+                                <option value="0">
+                                    0 niños
+                                </option>
+
+                                <option value="1">
+                                    1 niño
+                                </option>
+
+                                <option value="2">
+                                    2 niños
+                                </option>
+
+                                <option value="3">
+                                    3 niños
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- RESUMEN -->
+
+                    <div class="summary">
+
+                        <h3>
+                            Resumen de reserva
+                        </h3>
+
+                        <div class="summary-row">
+
+                            <span>
+                                Habitación
+                            </span>
+
+                            <strong id="resumenHabitacion">
+                                No seleccionada
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-row">
+
+                            <span>
+                                Precio por noche
+                            </span>
+
+                            <strong id="precio">
+                                $0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-row">
+
+                            <span>
+                                Número de noches
+                            </span>
+
+                            <strong id="noches">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-row total">
+
+                            <span>
+                                Total
+                            </span>
+
+                            <strong id="total">
+                                $0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="reserve-button">
+
+                        CONFIRMAR RESERVACIÓN
+
+                    </button>
+
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © 2026 Hotel
+            <span>Media Luna</span>
+            | Todos los derechos reservados.
+        </p>
+
+    </footer>
+
+
+    <script>
+
+        let precioHabitacion = 0;
+
+
+
+        function seleccionarHabitacion(
+            nombre,
+            precio,
+            id
+        ) {
+
+            document
+                .querySelectorAll(".room")
+                .forEach(room => {
+
+                    room.classList.remove("selected");
+
+                });
+
+
+            document
+                .getElementById(id)
+                .classList.add("selected");
+
+
+            document
+                .getElementById("habitacion")
+                .value = nombre;
+
+
+            document
+                .getElementById("resumenHabitacion")
+                .textContent = nombre;
+
+
+            document
+                .getElementById("precio")
+                .textContent = "$" + precio;
+
+
+            precioHabitacion = precio;
+
+
+            calcularTotal();
+
+
+            document
+                .getElementById("reservationForm")
+                .scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+        }
+
+
+
+
+        function calcularTotal() {
+
+            const entrada =
+                document.getElementById("entrada").value;
+
+            const salida =
+                document.getElementById("salida").value;
+
+
+            if (!entrada || !salida) {
+
+                document.getElementById("noches")
+                    .textContent = "0";
+
+                document.getElementById("total")
+                    .textContent = "$0";
+
+                return;
+            }
+
+
+            const fechaEntrada =
+                new Date(entrada);
+
+            const fechaSalida =
+                new Date(salida);
+
+
+            const diferencia =
+                fechaSalida - fechaEntrada;
+
+
+            const cantidadNoches =
+                Math.ceil(
+                    diferencia /
+                    (1000 * 60 * 60 * 24)
+                );
+
+
+            if (cantidadNoches <= 0) {
+
+                document.getElementById("noches")
+                    .textContent = "0";
+
+                document.getElementById("total")
+                    .textContent = "$0";
+
+                return;
+            }
+
+
+            const total =
+                cantidadNoches *
+                precioHabitacion;
+
+
+            document.getElementById("noches")
+                .textContent = cantidadNoches;
+
+
+            document.getElementById("total")
+                .textContent =
+                "$" + total.toFixed(2);
+
+        }
+
+
+        document
+            .getElementById("entrada")
+            .addEventListener(
+                "change",
+                calcularTotal
+            );
+
+
+        document
+            .getElementById("salida")
+            .addEventListener(
+                "change",
+                calcularTotal
+            );
+
+
+
+        document
+            .getElementById("reservationForm")
+            .addEventListener(
+                "submit",
+                function(event) {
+
+                    event.preventDefault();
+
+
+                    if (precioHabitacion === 0) {
+
+                        alert(
+                            "Por favor selecciona una habitación."
+                        );
+
+                        return;
+                    }
+
+
+                    const entrada =
+                        document.getElementById(
+                            "entrada"
+                        ).value;
+
+                    const salida =
+                        document.getElementById(
+                            "salida"
+                        ).value;
+
+
+                    if (
+                        new Date(salida)
+                        <=
+                        new Date(entrada)
+                    ) {
+
+                        alert(
+                            "La fecha de salida debe ser posterior a la fecha de entrada."
+                        );
+
+                        return;
+                    }
+
+
+                    const nombre =
+                        document.getElementById(
+                            "nombre"
+                        ).value;
+
+
+                    /*
+                       MENSAJE DE CONFIRMACIÓN
+                    */
+
+                    alert(
+                        "¡Reservación realizada correctamente!\n\n" +
+                        "Cliente: " + nombre + "\n" +
+                        "Habitación: " +
+                        document.getElementById("habitacion").value +
+                        "\n\n" +
+                        "Hotel Media Luna agradece tu preferencia."
+                    );
+
+
+                    /*
+                       REGRESAR AL INICIO
+                    */
+
+                    window.location.href =
+                        "index.html";
+
+                }
+            );
+
+    </script>
+
+
+</body>
+
+</html>

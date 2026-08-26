@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Iniciar Sesión | Hotel Media luna</title>
+
+    <style>
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #f4f7fa;
+            color: #333;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+
+     
+
+        header {
+            background: rgba(5, 55, 92, 0.98);
+            padding: 18px 0;
+
+            box-shadow:
+                0 5px 20px rgba(0, 0, 0, .22);
+
+            border-bottom: 3px solid #d4af37;
+
+            position: sticky;
+            top: 0;
+
+            z-index: 1000;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+
+    
+        .logo {
+            color: white;
+            text-decoration: none;
+
+            font-size: 29px;
+            font-weight: 700;
+
+            letter-spacing: .5px;
+        }
+
+        .logo span {
+            color: #f1c84b;
+        }
+
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 8px;
+        }
+
+        nav ul li a {
+            display: block;
+
+            color: white;
+
+            text-decoration: none;
+
+            padding: 11px 15px;
+
+            border-radius: 8px;
+
+            font-weight: 600;
+
+            transition: .3s;
+        }
+
+        nav ul li a:hover {
+            background: #f1c84b;
+            color: #05375c;
+
+            transform: translateY(-2px);
+        }
+
+        nav ul li a.active {
+            background: #f1c84b;
+            color: #05375c;
+        }
+
+
+
+        .login-page {
+
+            min-height: calc(100vh - 150px);
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding: 70px 20px;
+
+            background:
+                linear-gradient(
+                    rgba(3, 49, 82, .65),
+                    rgba(3, 49, 82, .75)
+                ),
+                url("https://i.pinimg.com/1200x/6e/16/db/6e16db2add718165828197650335205b.jpg");
+
+            background-size: cover;
+
+            background-position: center;
+
+            background-attachment: fixed;
+        }
+
+
+        .login-card {
+
+            width: 100%;
+
+            max-width: 460px;
+
+            background: rgba(255, 255, 255, .98);
+
+            padding: 42px;
+
+            border-radius: 22px;
+
+            box-shadow:
+                0 20px 55px rgba(0, 0, 0, .35);
+
+            border-top: 5px solid #d4af37;
+
+            animation: aparecer .7s ease;
+        }
+
+
+        .login-card h1 {
+
+            text-align: center;
+
+            color: #05375c;
+
+            font-size: 36px;
+
+            margin-bottom: 12px;
+        }
+
+        .login-card h1::after {
+
+            content: "";
+
+            display: block;
+
+            width: 65px;
+
+            height: 4px;
+
+            background: #d4af37;
+
+            margin: 13px auto;
+
+            border-radius: 10px;
+        }
+
+        .login-card > p {
+
+            text-align: center;
+
+            color: #666;
+
+            line-height: 1.6;
+
+            font-size: 15px;
+
+            margin-bottom: 30px;
+        }
+
+
+
+        .input-group {
+
+            margin-bottom: 22px;
+        }
+
+        .input-group label {
+
+            display: block;
+
+            color: #05375c;
+
+            font-weight: 700;
+
+            margin-bottom: 8px;
+
+            font-size: 15px;
+        }
+
+        .input-group input {
+
+            width: 100%;
+
+            padding: 14px 16px;
+
+            border: 1px solid #d6dce2;
+
+            border-radius: 10px;
+
+            background: #f8fafc;
+
+            font-size: 15px;
+
+            outline: none;
+
+            transition: .3s;
+        }
+
+        .input-group input:focus {
+
+            background: white;
+
+            border-color: #17699c;
+
+            box-shadow:
+                0 0 0 3px rgba(23, 105, 156, .12);
+        }
+
+
+        .remember {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin: 5px 0 25px;
+
+            font-size: 14px;
+        }
+
+        .remember label {
+
+            color: #555;
+
+            cursor: pointer;
+        }
+
+        .remember input {
+
+            margin-right: 6px;
+
+            accent-color: #05375c;
+        }
+
+        .remember a {
+
+            color: #17699c;
+
+            text-decoration: none;
+
+            font-weight: 600;
+        }
+
+        .remember a:hover {
+
+            color: #d09f20;
+
+            text-decoration: underline;
+        }
+
+        .btn {
+
+            width: 100%;
+
+            padding: 15px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #05375c,
+                    #17699c
+                );
+
+            color: white;
+
+            font-size: 17px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 7px 18px rgba(5, 55, 92, .25);
+
+            transition: .3s;
+        }
+
+        .btn:hover {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #d4af37,
+                    #b68a18
+                );
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 10px 25px rgba(180, 138, 24, .3);
+        }
+
+
+        .register {
+
+            text-align: center;
+
+            margin-top: 25px;
+
+            padding-top: 22px;
+
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .register p {
+
+            color: #666;
+
+            font-size: 14px;
+        }
+
+        .register a {
+
+            color: #17699c;
+
+            text-decoration: none;
+
+            font-weight: 700;
+        }
+
+        .register a:hover {
+
+            color: #d09f20;
+
+            text-decoration: underline;
+        }
+
+
+        footer {
+
+            background: #05375c;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 27px 0;
+
+            border-top: 4px solid #d4af37;
+        }
+
+        footer p {
+
+            font-size: 14px;
+
+            opacity: .9;
+        }
+
+
+
+        @keyframes aparecer {
+
+            from {
+
+                opacity: 0;
+
+                transform: translateY(30px);
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform: translateY(0);
+            }
+
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================== */
+
+        @media (max-width: 850px) {
+
+            header .container {
+
+                flex-direction: column;
+
+                gap: 15px;
+            }
+
+            nav ul {
+
+                flex-wrap: wrap;
+
+                justify-content: center;
+            }
+
+        }
+
+        @media (max-width: 500px) {
+
+            .login-page {
+
+                padding: 45px 15px;
+            }
+
+            .login-card {
+
+                padding: 30px 22px;
+
+                border-radius: 17px;
+            }
+
+            .login-card h1 {
+
+                font-size: 30px;
+            }
+
+            .logo {
+
+                font-size: 24px;
+            }
+
+            nav ul {
+
+                gap: 3px;
+            }
+
+            nav ul li a {
+
+                padding: 8px 9px;
+
+                font-size: 13px;
+            }
+
+            .remember {
+
+                flex-direction: column;
+
+                gap: 12px;
+
+                align-items: flex-start;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <header>
+
+        <div class="container">
+
+            <a href="index.html" class="logo">
+                Hotel <span>Media luna</span>
+            </a>
+
+
+            <nav>
+
+                <ul>
+
+                    <li>
+                        <a href="index.html">
+                            Inicio
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="habitaciones.html">
+                            Habitaciones
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="reservas.html">
+                            Reservas
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="contacto.html">
+                            Contacto
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="login.html" class="active">
+                            Iniciar sesión
+                        </a>
+                    </li>
+
+                </ul>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <main class="login-page">
+
+        <section class="login-container">
+
+            <div class="login-card">
+
+                <h1>Bienvenido</h1>
+
+                <p>
+                    Inicia sesión para administrar tus reservas y disfrutar
+                    de todos los beneficios de Hotel Media luna.
+                </p>
+
+
+
+                <form id="loginForm">
+
+
+                    <!-- CORREO -->
+
+                    <div class="input-group">
+
+                        <label for="correo">
+                            Correo Electrónico
+                        </label>
+
+                        <input
+                            type="email"
+                            id="correo"
+                            name="correo"
+                            placeholder="ejemplo@correo.com"
+                            required>
+
+                    </div>
+
+
+                    <!-- CONTRASEÑA -->
+
+                    <div class="input-group">
+
+                        <label for="password">
+                            Contraseña
+                        </label>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Ingrese su contraseña"
+                            minlength="8"
+                            required>
+
+                    </div>
+
+
+                    <!-- RECORDAR -->
+
+                    <div class="remember">
+
+                        <label>
+
+                            <input
+                                type="checkbox"
+                                id="recordarme">
+
+                            Recordarme
+
+                        </label>
+
+
+                        <a href="#">
+                            ¿Olvidó su contraseña?
+                        </a>
+
+                    </div>
+
+
+                    <!-- BOTÓN -->
+
+                    <button
+                        type="submit"
+                        class="btn">
+
+                        Iniciar Sesión
+
+                    </button>
+
+
+                </form>
+
+
+                <div class="register">
+
+                    <p>
+
+                        ¿No tienes una cuenta?
+
+                        <a href="inicio.html">
+                            Crear Cuenta
+                        </a>
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <div class="container">
+
+            <p>
+                © 2026 Hotel Media luna |
+                Todos los derechos reservados.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <script>
+
+        document
+            .getElementById("loginForm")
+            .addEventListener("submit", function(event) {
+
+                // Evita que el formulario recargue la página
+                event.preventDefault();
+
+                // Redirige directamente a index.html
+                window.location.href = "index.html";
+
+            });
+
+    </script>
+
+
+</body>
+
+</html>

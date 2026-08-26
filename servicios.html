@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Servicios | Hotel Media luna</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background-image:
+    linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),
+    url(https://i.pinimg.com/1200x/33/34/92/33349277b1aa177314440b96c1ed3199.jpg);
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+}
+
+header{
+    background:rgba(13,59,102,.95);
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 40px;
+}
+
+.logo{
+    color:white;
+    font-size:28px;
+    font-weight:bold;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+}
+
+nav ul li{
+    margin-left:25px;
+}
+
+nav ul li a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.3s;
+}
+
+nav ul li a:hover{
+    color:#ffd166;
+}
+
+.servicios{
+    width:90%;
+    margin:auto;
+    padding:60px 0;
+    text-align:center;
+}
+
+.servicios h1{
+    color:white;
+    font-size:50px;
+    margin-bottom:15px;
+}
+
+.servicios p{
+    color:white;
+    font-size:20px;
+    margin-bottom:40px;
+}
+
+.contenedor{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:white;
+    border-radius:18px;
+    padding:20px;
+    box-shadow:0 8px 20px rgba(0,0,0,.3);
+    transition:.4s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+.card img{
+    width:120px;
+    height:120px;
+    border-radius:15px;
+    object-fit:cover;
+    margin-bottom:15px;
+}
+
+.card h3{
+    color:#0d3b66;
+    margin-bottom:10px;
+}
+
+.card p{
+    color:#555;
+    font-size:15px;
+}
+
+.boton{
+    display:inline-block;
+    margin-top:40px;
+    background:#0d3b66;
+    color:white;
+    text-decoration:none;
+    padding:12px 30px;
+    border-radius:8px;
+    font-weight:bold;
+}
+
+.boton:hover{
+    background:#145da0;
+}
+
+footer{
+    margin-top:50px;
+    background:#0d3b66;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<nav>
+
+<div class="logo">🏨 Hotel Media luna</div>
+
+<ul>
+<li><a href="index.html">Inicio</a></li>
+<li><a href="servicios.html">Servicios</a></li>
+<li><a href="habitaciones.html">Habitaciones</a></li>
+<li><a href="contacto.html">Contacto</a></li>
+</ul>
+
+</nav>
+
+</header>
+
+<section class="servicios">
+
+<h1>Nuestros Servicios</h1>
+
+<p>Disfruta de una experiencia única con servicios de primera calidad.</p>
+
+<div class="contenedor">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=300&q=80">
+<h3>🏊 Piscina</h3>
+<p>Piscina climatizada con vista panorámica.</p>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=300&q=80">
+<h3>🍽 Restaurante</h3>
+<p>Comida gourmet preparada por chefs profesionales.</p>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=300&q=80">
+<h3>💪 Gimnasio</h3>
+<p>Equipos modernos para entrenar.</p>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=300&q=80">
+<h3>🛏 Habitaciones</h3>
+<p>Habitaciones cómodas y elegantes.</p>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=300&q=80">
+<h3>☕ Cafetería</h3>
+<p>Café y postres disponibles todo el día.</p>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=300&q=80">
+<h3>🌴 Jardines</h3>
+<p>Áreas verdes para descansar.</p>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=300&q=80">
+<h3>💆 Spa</h3>
+<p>Masajes y tratamientos relajantes.</p>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=300&q=80">
+<h3>🚗 Transporte</h3>
+<p>Servicio de traslado al aeropuerto.</p>
+</div>
+
+</div>
+
+<a href="index.html" class="boton">← Volver al Inicio</a>
+
+</section>
+
+<footer>
+<p>© 2026 Hotel Media luna | Todos los derechos reservados.</p>
+</footer>
+
+</body>
+</html>

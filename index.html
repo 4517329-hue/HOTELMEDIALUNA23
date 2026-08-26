@@ -1,0 +1,1563 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Hotel Media Luna | Reserva tu estancia</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #222;
+            background: #fff;
+        }
+
+
+
+        header {
+            background: #063b70;
+            color: white;
+        }
+
+        .topbar {
+            max-width: 1150px;
+            margin: auto;
+            height: 72px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+       
+        .logo {
+            color: white;
+            text-decoration: none;
+            font-size: 28px;
+            font-weight: bold;
+
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .hotel-name {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .hotel-name span {
+            color: #f6c343;
+        }
+
+    
+        .moon-logo {
+            position: relative;
+
+            width: 48px;
+            height: 48px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .moon {
+            width: 38px;
+            height: 38px;
+
+            background: #f6c343;
+
+            border-radius: 50%;
+
+            position: absolute;
+
+            box-shadow:
+                0 0 8px rgba(246,195,67,.35);
+        }
+
+        .moon::after {
+            content: "";
+
+            position: absolute;
+
+            width: 38px;
+            height: 38px;
+
+            background: #063b70;
+
+            border-radius: 50%;
+
+            left: 12px;
+            top: -5px;
+        }
+
+        .moon-star {
+            position: absolute;
+
+            color: white;
+
+            font-size: 14px;
+
+            top: 1px;
+            right: 0;
+
+            text-shadow:
+                0 0 5px rgba(255,255,255,.7);
+        }
+
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .currency {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .header-link {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 12px;
+        }
+
+        .header-button {
+            background: white;
+            color: #0755a0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 11px 17px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .header-button:hover {
+            background: #eef5ff;
+        }
+
+
+        nav ul {
+            max-width: 1150px;
+            margin: auto;
+
+            display: flex;
+            align-items: center;
+
+            gap: 10px;
+
+            padding: 0 0 12px;
+
+            list-style: none;
+        }
+
+        nav ul li a {
+            display: block;
+
+            color: white;
+
+            text-decoration: none;
+
+            padding: 12px 18px;
+
+            border-radius: 25px;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            transition: .3s;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            background: rgba(255,255,255,.15);
+        }
+
+
+        .hero {
+            min-height: 475px;
+
+            background:
+                linear-gradient(
+                    rgba(3, 52, 96, .68),
+                    rgba(3, 52, 96, .68)
+                ),
+                url("https://images.trvl-media.com/lodging/10000000/9240000/9234300/9234264/e0ffa21f.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill");
+
+            background-size: cover;
+            background-position: center;
+
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            width: 1150px;
+            max-width: 92%;
+            margin: auto;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 46px;
+            margin-bottom: 10px;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+
+        .search-box {
+            background: white;
+            border: 4px solid #f4bd00;
+            border-radius: 9px;
+
+            display: grid;
+            grid-template-columns: 1.2fr 1fr 1fr auto;
+
+            overflow: hidden;
+
+            max-width: 1100px;
+        }
+
+        .search-item {
+            padding: 13px 16px;
+            border-right: 1px solid #ddd;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .search-item label {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 4px;
+        }
+
+        .search-item input,
+        .search-item select {
+            border: none;
+            outline: none;
+            font-size: 15px;
+            font-weight: bold;
+            width: 100%;
+            background: white;
+        }
+
+        .search-button {
+            background: #0875df;
+            color: white;
+            border: none;
+
+            padding: 0 30px;
+
+            font-size: 17px;
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        .search-button:hover {
+            background: #075fb5;
+        }
+
+
+        .container {
+            width: 90%;
+            max-width: 1150px;
+            margin: auto;
+        }
+
+        .section {
+            padding: 55px 0;
+        }
+
+        .section h2 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: #222;
+        }
+
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            background: white;
+
+            transition: .3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,.12);
+        }
+
+        .card img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #073b63;
+        }
+
+        .card-content p {
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .price {
+            font-size: 21px;
+            font-weight: bold;
+            color: #0755a0;
+        }
+
+        .card-button {
+            display: inline-block;
+            margin-top: 15px;
+
+            background: #0755a0;
+            color: white;
+
+            text-decoration: none;
+            padding: 10px 18px;
+
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .card-button:hover {
+            background: #043d76;
+        }
+
+
+
+        .advantages {
+            padding: 55px 0;
+        }
+
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .advantage {
+            text-align: center;
+            padding: 25px;
+        }
+
+        .advantage-icon {
+            font-size: 35px;
+            margin-bottom: 12px;
+        }
+
+        .advantage h3 {
+            color: #073b63;
+            margin-bottom: 8px;
+        }
+
+        .advantage p {
+            color: #666;
+            font-size: 14px;
+        }
+
+
+        .reviews {
+            background: #f5f7fa;
+            padding: 60px 0;
+        }
+
+        .reviews h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #222;
+        }
+
+        .reviews-intro {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 15px;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .review-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 25px;
+
+            box-shadow: 0 5px 18px rgba(0,0,0,.07);
+
+            transition: .3s;
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,.12);
+        }
+
+        .review-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .review-name {
+            font-weight: bold;
+            color: #073b63;
+            font-size: 17px;
+        }
+
+        .stars {
+            color: #f4bd00;
+            font-size: 18px;
+            letter-spacing: 2px;
+        }
+
+        .review-card h3 {
+            color: #222;
+            font-size: 17px;
+            margin-bottom: 10px;
+        }
+
+        .review-card p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .review-date {
+            margin-top: 15px;
+            color: #999;
+            font-size: 12px;
+        }
+
+        .review-card.good {
+            border-top: 4px solid #20a35a;
+        }
+
+        .review-card.medium {
+            border-top: 4px solid #f4bd00;
+        }
+
+        .review-card.bad {
+            border-top: 4px solid #d9534f;
+        }
+
+
+
+        .discover {
+            background: #f5f7fa;
+            padding: 55px 0;
+        }
+
+        .discover-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .discover-item {
+            display: flex;
+            gap: 15px;
+        }
+
+        .discover-icon {
+            font-size: 25px;
+            min-width: 30px;
+        }
+
+        .discover-item h3 {
+            font-size: 17px;
+            margin-bottom: 7px;
+            color: #222;
+        }
+
+        .discover-item p {
+            color: #555;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+
+        footer {
+            background: #073b63;
+            color: white;
+            padding: 40px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        footer h3 {
+            color: #f4c542;
+            margin-bottom: 15px;
+        }
+
+        footer p,
+        footer a {
+            color: #d9e4ed;
+            text-decoration: none;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,.2);
+            padding-top: 20px;
+            text-align: center;
+            font-size: 13px;
+            color: #c8d5df;
+        }
+
+
+        @media (max-width: 900px) {
+
+            .topbar {
+                padding: 0 20px;
+            }
+
+            .header-right {
+                gap: 5px;
+            }
+
+            .header-link {
+                display: none;
+            }
+
+            nav ul {
+                padding: 0 20px 12px;
+                overflow-x: auto;
+            }
+
+            .search-box {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .search-button {
+                min-height: 55px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .discover-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .advantages-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .reviews-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .logo {
+                font-size: 22px;
+            }
+
+            .moon-logo {
+                width: 40px;
+                height: 40px;
+            }
+
+            .moon {
+                width: 31px;
+                height: 31px;
+            }
+
+            .moon::after {
+                width: 31px;
+                height: 31px;
+                left: 10px;
+                top: -4px;
+            }
+
+            .moon-star {
+                font-size: 11px;
+            }
+
+            .hotel-name {
+                font-size: 22px;
+            }
+
+            .currency {
+                display: none;
+            }
+
+            .header-button {
+                padding: 9px 10px;
+                font-size: 12px;
+            }
+
+            .hero {
+                min-height: 600px;
+            }
+
+            .hero-content h1 {
+                font-size: 34px;
+            }
+
+            .hero-content p {
+                font-size: 16px;
+            }
+
+            .search-box {
+                grid-template-columns: 1fr;
+            }
+
+            .search-item {
+                border-right: none;
+                border-bottom: 1px solid #ddd;
+            }
+
+            .search-button {
+                height: 55px;
+            }
+
+            .cards,
+            .discover-grid,
+            .advantages-grid,
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                gap: 4px;
+            }
+
+            nav ul li a {
+                padding: 9px 12px;
+                font-size: 13px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+
+    <header>
+
+        <div class="topbar">
+
+            <a href="index.html" class="logo">
+
+                <span class="moon-logo">
+
+                    <span class="moon"></span>
+
+                    <span class="moon-star">
+                        ✦
+                    </span>
+
+                </span>
+
+                <span class="hotel-name">
+                    Hotel <span>Media Luna</span>
+                </span>
+
+            </a>
+
+
+            <div class="header-right">
+
+                <span class="currency">
+                    USD
+                </span>
+
+                <a href="#" class="header-link">
+                    ?
+                </a>
+
+                <a href="contacto.html" class="header-link">
+                    Registra tu alojamiento
+                </a>
+
+                <a href="login.html" class="header-button">
+                    Iniciar sesión
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <nav>
+
+            <ul>
+
+                <li>
+                    <a href="index.html" class="active">
+                        Inicio
+                    </a>
+                </li>
+
+                <li>
+                    <a href="habitaciones.html">
+                        Habitaciones
+                    </a>
+                </li>
+
+                <li>
+                    <a href="reservas.html">
+                        Reservas
+                    </a>
+                </li>
+
+                <li>
+                    <a href="contacto.html">
+                        Contacto
+                    </a>
+                </li>
+
+                <li>
+                    <a href="login.html">
+                        Iniciar sesión
+                    </a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <h1>
+                    Busca tu hotel en San Salvador
+                </h1>
+
+                <p>
+                    Encuentra comodidad, elegancia y excelentes precios
+                    para tu próxima estancia.
+                </p>
+
+
+                <form
+                    class="search-box"
+                    action="reservas.html"
+                    method="get"
+                >
+
+                    <div class="search-item">
+
+                        <label for="destino">
+                            Indica el destino
+                        </label>
+
+                        <input
+                            type="text"
+                            id="destino"
+                            value="San Salvador"
+                            name="destino"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="search-item">
+
+                        <label for="entrada">
+                            Fecha de entrada
+                        </label>
+
+                        <input
+                            type="date"
+                            id="entrada"
+                            name="entrada"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="search-item">
+
+                        <label for="salida">
+                            Fecha de salida
+                        </label>
+
+                        <input
+                            type="date"
+                            id="salida"
+                            name="salida"
+                            required
+                        >
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="search-button"
+                    >
+                        Buscar
+                    </button>
+
+                </form>
+
+            </div>
+
+        </section>
+
+
+        <section class="section">
+
+            <div class="container">
+
+                <h2>
+                    Habitaciones recomendadas
+                </h2>
+
+
+                <div class="cards">
+
+
+                    <!-- HABITACIÓN INDIVIDUAL -->
+
+                    <article class="card">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=900&q=80"
+                            alt="Habitación individual"
+                        >
+
+                        <div class="card-content">
+
+                            <h3>
+                                Habitación Individual
+                            </h3>
+
+                            <p>
+                                Un espacio tranquilo y moderno,
+                                ideal para descansar después de un día
+                                de actividades.
+                            </p>
+
+                            <div class="price">
+                                $40 / noche
+                            </div>
+
+                            <a
+                                href="habitaciones.html"
+                                class="card-button"
+                            >
+                                Ver habitación
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- HABITACIÓN DOBLE -->
+
+                    <article class="card">
+
+                        <img
+                            src="https://i.pinimg.com/736x/83/df/fa/83dffa0a789ac10432c115aaefbe84a0.jpg"
+                            alt="Habitación doble"
+                        >
+
+                        <div class="card-content">
+
+                            <h3>
+                                Habitación Doble
+                            </h3>
+
+                            <p>
+                                Mayor espacio y comodidad para
+                                disfrutar tu estancia acompañado.
+                            </p>
+
+                            <div class="price">
+                                $65 / noche
+                            </div>
+
+                            <a
+                                href="habitaciones.html"
+                                class="card-button"
+                            >
+                                Ver habitación
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- SUITE -->
+
+                    <article class="card">
+
+                        <img
+                            src="https://i.pinimg.com/1200x/41/d3/ee/41d3eedb752d5612cd091dc122e3e19d.jpg"
+                            alt="Suite de lujo"
+                        >
+
+                        <div class="card-content">
+
+                            <h3>
+                                Suite Media Luna
+                            </h3>
+
+                            <p>
+                                Una habitación amplia y elegante
+                                para una experiencia más especial.
+                            </p>
+
+                            <div class="price">
+                                $180 / noche
+                            </div>
+
+                            <a
+                                href="habitaciones.html"
+                                class="card-button"
+                            >
+                                Ver habitación
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="advantages">
+
+            <div class="container">
+
+                <h2>
+                    ¿Por qué elegir Hotel Media Luna?
+                </h2>
+
+
+                <div class="advantages-grid">
+
+
+                    <div class="advantage">
+
+                        <div class="advantage-icon">
+                            🛎️
+                        </div>
+
+                        <h3>
+                            Atención 24/7
+                        </h3>
+
+                        <p>
+                            Nuestro personal está disponible
+                            para ayudarte durante toda tu estancia.
+                        </p>
+
+                    </div>
+
+
+                    <div class="advantage">
+
+                        <div class="advantage-icon">
+                            📶
+                        </div>
+
+                        <h3>
+                            WiFi gratuito
+                        </h3>
+
+                        <p>
+                            Mantente conectado durante
+                            toda tu visita.
+                        </p>
+
+                    </div>
+
+
+                    <div class="advantage">
+
+                        <div class="advantage-icon">
+                            🍽️
+                        </div>
+
+                        <h3>
+                            Restaurante
+                        </h3>
+
+                        <p>
+                            Disfruta de diferentes opciones
+                            gastronómicas.
+                        </p>
+
+                    </div>
+
+
+                    <div class="advantage">
+
+                        <div class="advantage-icon">
+                            🏊
+                        </div>
+
+                        <h3>
+                            Piscina
+                        </h3>
+
+                        <p>
+                            Relájate y disfruta de nuestras
+                            instalaciones.
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="reviews">
+
+            <div class="container">
+
+                <h2>
+                    Opiniones de nuestros huéspedes
+                </h2>
+
+                <p class="reviews-intro">
+                    Conoce lo que algunas personas piensan
+                    después de visitar Hotel Media Luna.
+                </p>
+
+
+                <div class="reviews-grid">
+
+
+                    <!-- OPINIÓN 1 -->
+
+                    <article class="review-card good">
+
+                        <div class="review-top">
+
+                            <div class="review-name">
+                                Sofía Martínez
+                            </div>
+
+                            <div class="stars">
+                                ★★★★★
+                            </div>
+
+                        </div>
+
+                        <h3>
+                            ¡Me encantó el hotel!
+                        </h3>
+
+                        <p>
+                            La habitación estaba muy limpia y cómoda.
+                            El personal fue amable y la piscina fue
+                            una de mis partes favoritas. Definitivamente
+                            volvería.
+                        </p>
+
+                        <div class="review-date">
+                            Hace 2 semanas
+                        </div>
+
+                    </article>
+
+
+                    <!-- OPINIÓN 2 -->
+
+                    <article class="review-card good">
+
+                        <div class="review-top">
+
+                            <div class="review-name">
+                                Carlos Hernández
+                            </div>
+
+                            <div class="stars">
+                                ★★★★☆
+                            </div>
+
+                        </div>
+
+                        <h3>
+                            Muy buena experiencia
+                        </h3>
+
+                        <p>
+                            La habitación doble tenía bastante espacio
+                            y la atención fue excelente. El restaurante
+                            también tenía opciones muy buenas.
+                        </p>
+
+                        <div class="review-date">
+                            Hace 1 mes
+                        </div>
+
+                    </article>
+
+
+                    <!-- OPINIÓN 3 -->
+
+                    <article class="review-card medium">
+
+                        <div class="review-top">
+
+                            <div class="review-name">
+                                Valeria López
+                            </div>
+
+                            <div class="stars">
+                                ★★★☆☆
+                            </div>
+
+                        </div>
+
+                        <h3>
+                            Estuvo bien
+                        </h3>
+
+                        <p>
+                            El hotel es bonito y la ubicación me gustó,
+                            aunque tuve algunos problemas con el servicio
+                            de la habitación. En general fue una experiencia
+                            normal.
+                        </p>
+
+                        <div class="review-date">
+                            Hace 3 semanas
+                        </div>
+
+                    </article>
+
+
+                    <!-- OPINIÓN 4 -->
+
+                    <article class="review-card bad">
+
+                        <div class="review-top">
+
+                            <div class="review-name">
+                                Diego Ramírez
+                            </div>
+
+                            <div class="stars">
+                                ★★☆☆☆
+                            </div>
+
+                        </div>
+
+                        <h3>
+                            No fue lo que esperaba
+                        </h3>
+
+                        <p>
+                            La habitación estaba bien, pero esperaba
+                            una atención más rápida. También tuve algunos
+                            inconvenientes durante mi estancia.
+                        </p>
+
+                        <div class="review-date">
+                            Hace 2 meses
+                        </div>
+
+                    </article>
+
+
+                    <!-- OPINIÓN 5 -->
+
+                    <article class="review-card good">
+
+                        <div class="review-top">
+
+                            <div class="review-name">
+                                Mariana Flores
+                            </div>
+
+                            <div class="stars">
+                                ★★★★★
+                            </div>
+
+                        </div>
+
+                        <h3>
+                            Excelente lugar
+                        </h3>
+
+                        <p>
+                            Me fascinó la Suite Media Luna. Es amplia,
+                            elegante y muy cómoda. Todo estaba limpio
+                            y la experiencia fue increíble.
+                        </p>
+
+                        <div class="review-date">
+                            Hace 5 días
+                        </div>
+
+                    </article>
+
+
+                    <!-- OPINIÓN 6 -->
+
+                    <article class="review-card medium">
+
+                        <div class="review-top">
+
+                            <div class="review-name">
+                                Andrés García
+                            </div>
+
+                            <div class="stars">
+                                ★★★☆☆
+                            </div>
+
+                        </div>
+
+                        <h3>
+                            Buen hotel, pero puede mejorar
+                        </h3>
+
+                        <p>
+                            Me gustó la ubicación y las instalaciones,
+                            aunque considero que algunos precios podrían
+                            ser un poco más accesibles.
+                        </p>
+
+                        <div class="review-date">
+                            Hace 1 mes
+                        </div>
+
+                    </article>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="discover">
+
+            <div class="container">
+
+                <h2>
+                    Más lugares para descubrir,
+                    más formas de disfrutar
+                </h2>
+
+
+                <div class="discover-grid">
+
+
+                    <div class="discover-item">
+
+                        <div class="discover-icon">
+                            ✈️
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Viajes a San Salvador
+                            </h3>
+
+                            <p>
+                                Descubre opciones para llegar
+                                a la capital y comenzar tu aventura.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="discover-item">
+
+                        <div class="discover-icon">
+                            🏨
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Hoteles en El Salvador
+                            </h3>
+
+                            <p>
+                                Encuentra diferentes destinos
+                                para conocer el país.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="discover-item">
+
+                        <div class="discover-icon">
+                            🌴
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Hoteles en La Libertad
+                            </h3>
+
+                            <p>
+                                Disfruta de playas, restaurantes
+                                y lugares turísticos.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="discover-item">
+
+                        <div class="discover-icon">
+                            🚗
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Alquiler de coches
+                            </h3>
+
+                            <p>
+                                Muévete por la ciudad
+                                con mayor comodidad.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="discover-item">
+
+                        <div class="discover-icon">
+                            🏞️
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Qué hacer en San Salvador
+                            </h3>
+
+                            <p>
+                                Conoce restaurantes, parques,
+                                museos y atracciones.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="discover-item">
+
+                        <div class="discover-icon">
+                            📍
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Lugares cercanos
+                            </h3>
+
+                            <p>
+                                Descubre sitios interesantes
+                                cerca de Hotel Media Luna.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <footer>
+
+        <div class="container">
+
+            <div class="footer-grid">
+
+
+                <div>
+
+                    <h3>
+                        Hotel Media Luna
+                    </h3>
+
+                    <p>
+                        Un lugar pensado para disfrutar
+                        comodidad, elegancia y una atención
+                        especial en cada estancia.
+                    </p>
+
+                </div>
+
+
+                <div>
+
+                    <h3>
+                        Hotel
+                    </h3>
+
+                    <p>
+                        <a href="index.html">
+                            Inicio
+                        </a>
+                    </p>
+
+                    <p>
+                        <a href="habitaciones.html">
+                            Habitaciones
+                        </a>
+                    </p>
+
+                    <p>
+                        <a href="reservas.html">
+                            Reservas
+                        </a>
+                    </p>
+
+                </div>
+
+
+                <div>
+
+                    <h3>
+                        Contacto
+                    </h3>
+
+                    <p>
+                        📍 San Salvador, El Salvador
+                    </p>
+
+                    <p>
+                        📞 +503 0000-0000
+                    </p>
+
+                    <p>
+                        ✉️ contacto@hotelmedialuna.com
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="copyright">
+
+                © 2026 Hotel Media Luna.
+                Todos los derechos reservados.
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+</body>
+
+</html>

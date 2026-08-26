@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Habitaciones | Hotel Media luna</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #f4f7fa;
+            color: #333;
+        }
+
+
+        header {
+            background: #073b63;
+            padding: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,.25);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            text-decoration: none;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #f5c542;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 7px;
+            font-weight: bold;
+            transition: .3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            background: #f5c542;
+            color: #073b63;
+        }
+
+        .rooms {
+            padding: 80px 0;
+
+            background:
+                linear-gradient(
+                    rgba(245,248,251,.94),
+                    rgba(255,255,255,.96)
+                ),
+                url("https://i.pinimg.com/1200x/e7/23/59/e72359d4a6ed0d1f1ef346d29aa7339a.jpg");
+
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            color: #073b63;
+            font-size: 44px;
+            margin-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: "";
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: #f5c542;
+            margin: 15px auto;
+            border-radius: 5px;
+        }
+
+        .section-title p {
+            color: #666;
+            font-size: 18px;
+        }
+
+
+
+        .room-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .room-card {
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+
+            box-shadow:
+                0 8px 25px rgba(0,0,0,.16);
+
+            transition: .4s;
+        }
+
+        .room-card:hover {
+            transform: translateY(-10px);
+
+            box-shadow:
+                0 18px 40px rgba(0,0,0,.25);
+        }
+
+
+
+        .room-card img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+            display: block;
+            transition: .4s;
+        }
+
+        .room-card:hover img {
+            transform: scale(1.04);
+        }
+
+
+        .room-info {
+            padding: 25px;
+        }
+
+        .room-info h3 {
+            color: #073b63;
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .price {
+            color: #c39517;
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .room-info ul {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .room-info li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            color: #555;
+        }
+
+       
+        .btn {
+            display: block;
+            text-align: center;
+
+            background: #073b63;
+            color: white;
+
+            text-decoration: none;
+
+            padding: 13px;
+
+            border-radius: 8px;
+
+            font-weight: bold;
+
+            transition: .3s;
+        }
+
+        .btn:hover {
+            background: #f5c542;
+            color: #073b63;
+        }
+
+
+        footer {
+            background: #073b63;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            border-top: 4px solid #f5c542;
+        }
+
+
+
+        @media(max-width: 950px) {
+
+            header .container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .room-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media(max-width: 600px) {
+
+            .room-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title h2 {
+                font-size: 32px;
+            }
+
+            .logo {
+                font-size: 24px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<header>
+
+    <div class="container">
+
+        <a href="index.html" class="logo">
+            Hotel <span>Media luna</span>
+        </a>
+
+        <nav>
+
+            <ul>
+
+                <li>
+                    <a href="index.html">Inicio</a>
+                </li>
+
+                <li>
+                    <a href="habitaciones.html" class="active">
+                        Habitaciones
+                    </a>
+                </li>
+
+                <li>
+                    <a href="reservas.html">
+                        Reservas
+                    </a>
+                </li>
+
+                <li>
+                    <a href="contacto.html">
+                        Contacto
+                    </a>
+                </li>
+
+                <li>
+                    <a href="login.html">
+                        Cerrar Sesión
+                    </a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<section class="rooms">
+
+<div class="container">
+
+    <div class="section-title">
+
+        <h2>Nuestras Habitaciones</h2>
+
+        <p>
+            Elige la habitación perfecta para disfrutar de una estancia
+            inolvidable con todas las comodidades.
+        </p>
+
+    </div>
+
+
+    <div class="room-grid">
+
+
+
+        <div class="room-card">
+
+            <img
+                src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=900&q=80"
+                alt="Habitación Deluxe">
+
+            <div class="room-info">
+
+                <h3>Habitación Deluxe</h3>
+
+                <p class="price">$120 / noche</p>
+
+                <ul>
+                    <li>🛏️ Cama King Size</li>
+                    <li>👥 2 Personas</li>
+                    <li>📶 WiFi Gratis</li>
+                    <li>❄️ Aire Acondicionado</li>
+                    <li>🍽️ Desayuno Incluido</li>
+                    <li>📺 Smart TV</li>
+                </ul>
+
+                <a href="reservas.html" class="btn">
+                    Reservar
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="room-card">
+
+            <img
+                src="https://i.pinimg.com/1200x/41/d3/ee/41d3eedb752d5612cd091dc122e3e19d.jpg"
+                alt="Suite Ejecutiva">
+
+            <div class="room-info">
+
+                <h3>Suite Ejecutiva</h3>
+
+                <p class="price">$180 / noche</p>
+
+                <ul>
+                    <li>🛏️ Cama King Size</li>
+                    <li>👥 3 Personas</li>
+                    <li>📶 WiFi Gratis</li>
+                    <li>🛁 Jacuzzi</li>
+                    <li>🍽️ Desayuno Buffet</li>
+                    <li>🏊 Acceso a Piscina</li>
+                </ul>
+
+                <a href="reservas.html" class="btn">
+                    Reservar
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="room-card">
+
+            <img
+                src="https://i.pinimg.com/736x/73/43/81/7343816a8e6a2b1135a89c3e41ceb40e.jpg"
+                alt="Suite Presidencial">
+
+            <div class="room-info">
+
+                <h3>Suite Presidencial</h3>
+
+                <p class="price">$350 / noche</p>
+
+                <ul>
+                    <li>🛏️ Cama King Premium</li>
+                    <li>👥 4 Personas</li>
+                    <li>📶 WiFi Premium</li>
+                    <li>🛁 Jacuzzi Privado</li>
+                    <li>🍽️ Desayuno Gourmet</li>
+                    <li>🌅 Balcón con Vista al Mar</li>
+                </ul>
+
+                <a href="reservas.html" class="btn">
+                    Reservar
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- HABITACIÓN 4 -->
+
+        <div class="room-card">
+
+            <img
+                src="https://i.pinimg.com/736x/88/d3/50/88d35076c00193494966cd6ea83f1991.jpg"
+                alt="Habitación Familiar">
+
+            <div class="room-info">
+
+                <h3>Habitación Familiar</h3>
+
+                <p class="price">$210 / noche</p>
+
+                <ul>
+                    <li>🛏️ Dos Camas Queen</li>
+                    <li>👨‍👩‍👧‍👦 5 Personas</li>
+                    <li>📶 WiFi Gratis</li>
+                    <li>📺 Smart TV</li>
+                    <li>❄️ Aire Acondicionado</li>
+                    <li>🍽️ Desayuno Incluido</li>
+                </ul>
+
+                <a href="reservas.html" class="btn">
+                    Reservar
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- HABITACIÓN 5 -->
+
+        <div class="room-card">
+
+            <img
+                src="https://i.pinimg.com/1200x/c8/53/e0/c853e05f88ef292ee221f2f68c5e0782.jpg"
+                alt="Suite Luna de Miel">
+
+            <div class="room-info">
+
+                <h3>Suite Luna de Miel</h3>
+
+                <p class="price">$270 / noche</p>
+
+                <ul>
+                    <li>💖 Decoración Romántica</li>
+                    <li>🛁 Jacuzzi</li>
+                    <li>🍾 Cena Especial</li>
+                    <li>📶 WiFi Gratis</li>
+                    <li>🌹 Vista Panorámica</li>
+                    <li>🛏️ Cama King Size</li>
+                </ul>
+
+                <a href="reservas.html" class="btn">
+                    Reservar
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- HABITACIÓN 6 -->
+
+        <div class="room-card">
+
+            <img
+                src="https://i.pinimg.com/1200x/e5/59/03/e559037a266cf434719813faf199fb56.jpg"
+                alt="Habitación Premium">
+
+            <div class="room-info">
+
+                <h3>Habitación Premium</h3>
+
+                <p class="price">$150 / noche</p>
+
+                <ul>
+                    <li>🛏️ Cama Queen</li>
+                    <li>👥 2 Personas</li>
+                    <li>📶 WiFi Gratis</li>
+                    <li>❄️ Aire Acondicionado</li>
+                    <li>☕ Cafetera</li>
+                    <li>📺 Smart TV</li>
+                </ul>
+
+                <a href="reservas.html" class="btn">
+                    Reservar
+                </a>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+</section>
+
+
+<footer>
+
+<div class="container">
+
+<p>
+© 2026 Hotel Media Luna | Todos los derechos reservados.
+</p>
+
+</div>
+
+</footer>
+
+
+</body>
+
+</html>
